@@ -9,5 +9,6 @@ export default {
     "./projects/shared-ui/logo/src/**/*.{html,ts}",
     "./projects/shared-ui/dashboard/src/**/*.{html,ts}",
     "./projects/shared-ui/sidenav/src/**/*.{html,ts}",
+    "./projects/shared-ui/login/src/**/*.{html,ts}"
   ],
 };

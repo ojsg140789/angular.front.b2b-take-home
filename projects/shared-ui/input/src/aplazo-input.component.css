@@ -1,0 +1,28 @@
+.input-container {
+  position: relative;
+  margin-bottom: 20px;
+  display: inline-block;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.input-label {
+  position: absolute;
+  top: -10px;
+  left: 15px;
+  background-color: white;
+  padding: 0 5px;
+  color: #666;
+  font-size: 12px;
+}
+
+.input-field {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 100%;
+  padding: 1px 10px;
+  border-radius: 8px;
+}
