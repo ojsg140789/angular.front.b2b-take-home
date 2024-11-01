@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   FormControl,
   FormGroup,
@@ -9,11 +10,13 @@ import { AplazoButtonComponent } from '@apz/shared-ui/button';
 import { AplazoLogoComponent } from '@apz/shared-ui/logo';
 import { LoginUseCase } from '../../../application/login.usecase';
 
+import { AplazoInputComponent } from '@apz/shared-ui/input';
+
 @Component({
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
-  imports: [ReactiveFormsModule, AplazoButtonComponent, AplazoLogoComponent],
+  imports: [CommonModule, ReactiveFormsModule, AplazoButtonComponent, AplazoLogoComponent, AplazoInputComponent],
 })
 export class LoginComponent {
   readonly loginUseCase = inject(LoginUseCase);
@@ -33,6 +36,8 @@ export class LoginComponent {
     password: this.password,
   });
 
+  passwordVisible = false;
+
   login(): void {
     this.loginUseCase
       .execute({
@@ -40,5 +45,9 @@ export class LoginComponent {
         password: this.password.value,
       })
       .subscribe();
+  }
+
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
   }
 }

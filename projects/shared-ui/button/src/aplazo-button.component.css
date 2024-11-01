@@ -8,5 +8,5 @@
   @apply rounded-full;
 }
 .aplazo-base-button:not(.btn-rounded) {
-  @apply rounded-lg;
+  @apply rounded-full;
 }
