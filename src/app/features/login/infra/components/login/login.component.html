@@ -49,6 +49,9 @@
       </button>
     </div>
   </div>
+
+  <p *ngIf="errorMessage" class="text-red-500 text-center mb-4">{{ errorMessage }}</p>
+
   <button
     aplzButton
     aplzAppearance="stroked"

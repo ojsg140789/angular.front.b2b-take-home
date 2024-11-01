@@ -9,7 +9,7 @@ import {
 import { AplazoButtonComponent } from '@apz/shared-ui/button';
 import { AplazoLogoComponent } from '@apz/shared-ui/logo';
 import { LoginUseCase } from '../../../application/login.usecase';
-
+import { AuthValidationService } from '../../../application/auth-validation.service';
 import { AplazoInputComponent } from '@apz/shared-ui/input';
 
 @Component({
@@ -20,6 +20,7 @@ import { AplazoInputComponent } from '@apz/shared-ui/input';
 })
 export class LoginComponent {
   readonly loginUseCase = inject(LoginUseCase);
+  readonly authValidationService = inject(AuthValidationService); // Inyección de AuthValidationService
 
   readonly username = new FormControl<string>('', {
     nonNullable: true,
@@ -37,14 +38,23 @@ export class LoginComponent {
   });
 
   passwordVisible = false;
+  errorMessage: string | null = null;
 
   login(): void {
-    this.loginUseCase
-      .execute({
-        username: this.username.value,
-        password: this.password.value,
-      })
-      .subscribe();
+    const { username, password } = this.form.value;
+    this.authValidationService.validateCredentials(username!, password!).subscribe(result => {
+      if (!result.valid) {
+        this.errorMessage = result.message || 'Credenciales inválidas.';
+      } else {
+        this.errorMessage = null;
+        this.loginUseCase
+          .execute({
+            username: this.username.value,
+            password: this.password.value,
+          })
+          .subscribe();
+      }
+    });
   }
 
   togglePasswordVisibility() {
