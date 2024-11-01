@@ -22,7 +22,9 @@
         placeholder="Correo electr&oacute;nico o Usuario"
         formControlName="username"
         class="input-field w-full"
+        (blur)="onUsernameBlur()"
       />
+      <p *ngIf="usernameError" class="text-red-500 mt-2">{{ usernameError }}</p>
     </div>
     <div class="input-container relative">
       <label for="password-login" class="input-label">Contrase&ntilde;a</label>

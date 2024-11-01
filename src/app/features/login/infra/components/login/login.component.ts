@@ -39,6 +39,7 @@ export class LoginComponent {
 
   passwordVisible = false;
   errorMessage: string | null = null;
+  usernameError: string | null = null;
 
   login(): void {
     const { username, password } = this.form.value;
@@ -59,5 +60,14 @@ export class LoginComponent {
 
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
+  }
+
+  onUsernameBlur() {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(this.username.value || '')) {
+      this.usernameError = 'El campo debe ser un correo electrónico válido.';
+    } else {
+      this.usernameError = null;
+    }
   }
 }
