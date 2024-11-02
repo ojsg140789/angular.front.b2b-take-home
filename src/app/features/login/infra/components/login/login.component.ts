@@ -11,12 +11,13 @@ import { AplazoLogoComponent } from '@apz/shared-ui/logo';
 import { LoginUseCase } from '../../../application/login.usecase';
 import { AuthValidationService } from '../../../application/auth-validation.service';
 import { AplazoInputComponent } from '@apz/shared-ui/input';
+import { AplazoNoWhiteSpaceDirective } from '../../../../../../../projects/shared-ui/src/lib/directives/no-white-space.directive';
 
 @Component({
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
-  imports: [CommonModule, ReactiveFormsModule, AplazoButtonComponent, AplazoLogoComponent, AplazoInputComponent],
+  imports: [CommonModule, ReactiveFormsModule, AplazoButtonComponent, AplazoLogoComponent, AplazoInputComponent, AplazoNoWhiteSpaceDirective],
 })
 export class LoginComponent {
   readonly loginUseCase = inject(LoginUseCase);
