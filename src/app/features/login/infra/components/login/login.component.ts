@@ -12,12 +12,21 @@ import { LoginUseCase } from '../../../application/login.usecase';
 import { AuthValidationService } from '../../../application/auth-validation.service';
 import { AplazoInputComponent } from '@apz/shared-ui/input';
 import { AplazoNoWhiteSpaceDirective } from '../../../../../../../projects/shared-ui/src/lib/directives/no-white-space.directive';
+import { AplazoLowercaseDirective } from '../../../../../../../projects/shared-ui/src/lib/directives/lower-case-text.directive';
 
 @Component({
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
-  imports: [CommonModule, ReactiveFormsModule, AplazoButtonComponent, AplazoLogoComponent, AplazoInputComponent, AplazoNoWhiteSpaceDirective],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    AplazoButtonComponent,
+    AplazoLogoComponent,
+    AplazoInputComponent,
+    AplazoNoWhiteSpaceDirective,
+    AplazoLowercaseDirective
+  ],
 })
 export class LoginComponent {
   readonly loginUseCase = inject(LoginUseCase);
@@ -44,19 +53,21 @@ export class LoginComponent {
 
   login(): void {
     const { username, password } = this.form.value;
-    this.authValidationService.validateCredentials(username!, password!).subscribe(result => {
-      if (!result.valid) {
-        this.errorMessage = result.message || 'Credenciales inválidas.';
-      } else {
-        this.errorMessage = null;
-        this.loginUseCase
-          .execute({
-            username: this.username.value,
-            password: this.password.value,
-          })
-          .subscribe();
-      }
-    });
+    this.authValidationService
+      .validateCredentials(username!, password!)
+      .subscribe((result) => {
+        if (!result.valid) {
+          this.errorMessage = result.message || 'Credenciales inválidas.';
+        } else {
+          this.errorMessage = null;
+          this.loginUseCase
+            .execute({
+              username: this.username.value,
+              password: this.password.value,
+            })
+            .subscribe();
+        }
+      });
   }
 
   togglePasswordVisibility() {
