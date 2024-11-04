@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AplazoButtonComponent } from '@apz/shared-ui/button';
 import { AplazoLogoComponent } from '@apz/shared-ui/logo';
 import { LoginUseCase } from '../../../application/login.usecase';
@@ -31,6 +32,7 @@ import { AplazoLowercaseDirective } from '../../../../../../../projects/shared-u
 export class LoginComponent {
   readonly loginUseCase = inject(LoginUseCase);
   readonly authValidationService = inject(AuthValidationService); // Inyección de AuthValidationService
+  readonly router = inject(Router);
 
   readonly username = new FormControl<string>('', {
     nonNullable: true,
@@ -65,7 +67,15 @@ export class LoginComponent {
               username: this.username.value,
               password: this.password.value,
             })
-            .subscribe();
+            .subscribe({
+              next: () => {
+                this.router.navigate(['/apz/home']);
+              },
+              error: (error) => {
+                this.errorMessage = 'Error al iniciar sesión. Verifica tus credenciales.';
+                console.error('Login error', error);
+              },
+            });
         }
       });
   }
