@@ -3,7 +3,7 @@
     <nav class="flex flex-grow flex-shrink-0 justify-between items-center w-full">
       <h2 class="font-medium text-2xl">{{ pageTitle$ | async }}</h2>
 
-      <button aplzButton aplzAppearance="basic" size="md" class="items-center">
+      <button aplzButton aplzAppearance="basic" size="md" class="items-center" (click)="logout()">
         <span class="lowercase font-light"> Cerrar sesión </span>
       </button>
     </nav>

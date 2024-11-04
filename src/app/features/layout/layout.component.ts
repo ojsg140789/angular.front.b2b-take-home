@@ -6,6 +6,7 @@ import { AplazoSidenavLinkComponent } from '../../../../projects/shared-ui/siden
 import { ROUTE_CONFIG } from '../../core/infra/config/routes.config';
 import { CommonModule } from '@angular/common';
 import { RouteTitleService } from '../../core/services/route-title.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   standalone: true,
@@ -22,6 +23,7 @@ import { RouteTitleService } from '../../core/services/route-title.service';
 })
 export class LayoutComponent {
   readonly #router = inject(Router);
+  private readonly authService = inject(AuthService);
 
   readonly appRoutes = ROUTE_CONFIG;
   
@@ -29,5 +31,16 @@ export class LayoutComponent {
 
   clickLogo(): void {
     this.#router.navigate([`/${ROUTE_CONFIG.app}/${ROUTE_CONFIG.home}`]);
+  }
+
+  logout(): void {
+    this.authService.logout().subscribe({
+      next: () => {
+        this.#router.navigate(['/auth']);
+      },
+      error: (error) => {
+        console.error('Error al cerrar sesión', error);
+      },
+    });
   }
 }
