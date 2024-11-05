@@ -1,0 +1,32 @@
+.summary-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  
+  .summary-item {
+    text-align: center;
+  }
+  
+  .summary-label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: #aaaaaa;
+  }
+  
+  .summary-value {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .divider {
+    width: 1px;
+    height: 40px;
+    background-color: #444;
+  }
+  
