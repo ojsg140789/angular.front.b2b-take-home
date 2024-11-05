@@ -1,6 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OrderOperation } from '../../../../src/app/core/domain/entities/order-operation';
+
+export interface OrderOperation {
+  loanId: number;
+  updatedAt: string;
+  status: string;
+  price: number;
+}
 
 @Component({
   selector: 'aplz-table',
