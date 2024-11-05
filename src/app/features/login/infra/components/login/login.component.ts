@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AplazoButtonComponent } from '@apz/shared-ui/button';
 import { AplazoLogoComponent } from '@apz/shared-ui/logo';
 import { LoginUseCase } from '../../../application/login.usecase';
@@ -31,8 +32,9 @@ import { AplazoLowercaseDirective } from '../../../../../../../projects/shared-u
 })
 export class LoginComponent {
   readonly loginUseCase = inject(LoginUseCase);
-  readonly authValidationService = inject(AuthValidationService); // Inyección de AuthValidationService
+  readonly authValidationService = inject(AuthValidationService);
   readonly router = inject(Router);
+  private toastr = inject(ToastrService);
 
   readonly username = new FormControl<string>('', {
     nonNullable: true,
@@ -50,18 +52,21 @@ export class LoginComponent {
   });
 
   passwordVisible = false;
-  errorMessage: string | null = null;
   usernameError: string | null = null;
 
   login(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     const { username, password } = this.form.value;
     this.authValidationService
       .validateCredentials(username!, password!)
       .subscribe((result) => {
         if (!result.valid) {
-          this.errorMessage = result.message || 'Credenciales inválidas.';
+          this.toastr.error(result.message || 'Credenciales inválidas.');
         } else {
-          this.errorMessage = null;
           this.loginUseCase
             .execute({
               username: this.username.value,
@@ -72,8 +77,8 @@ export class LoginComponent {
                 this.router.navigate(['/apz/home']);
               },
               error: (error) => {
-                this.errorMessage = 'Error al iniciar sesión. Verifica tus credenciales.';
-                console.error('Login error', error);
+                const errorMsg = error?.error?.message || 'Ocurrió un error inesperado';
+                this.toastr.error(errorMsg);
               },
             });
         }

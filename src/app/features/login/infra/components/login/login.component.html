@@ -11,9 +11,9 @@
 >
   <div class="grid gap-10 mb-12 w-full">
     <div class="input-container">
-      <label for="username-login" class="input-label"
-        >Correo electr&oacute;nico o Usuario</label
-      >
+      <label for="username-login" class="input-label">
+        Correo electr&oacute;nico o Usuario
+      </label>
       <input
         aplzInput
         aplazoNoWhiteSpace
@@ -21,12 +21,15 @@
         aplzColor="dark"
         id="username-login"
         size="md"
-        placeholder="Correo electr&oacute;nico o Usuario"
+        placeholder="Escribe tu correo electr&oacute;nico"
         formControlName="username"
         class="input-field w-full"
         (blur)="onUsernameBlur()"
       />
-      <p *ngIf="usernameError" class="text-red-500 mt-2">{{ usernameError }}</p>
+      <p *ngIf="username.invalid && username.touched" class="text-red-500 mt-2">
+        <span *ngIf="username.errors?.['required']">El correo electrónico o usuario es requerido.</span>
+        <span *ngIf="username.errors?.['email']">El correo electrónico no es válido.</span>
+      </p>
     </div>
     <div class="input-container relative">
       <label for="password-login" class="input-label">Contrase&ntilde;a</label>
@@ -45,17 +48,14 @@
         (click)="togglePasswordVisibility()"
         class="absolute inset-y-0 right-3 flex items-center text-gray-500"
       >
-        <i
-          class="{{
-            passwordVisible ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'
-          }}"
-        ></i>
+        <i [ngClass]="passwordVisible ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye'"></i>
       </button>
+      <!-- Mensajes de error para el campo de contraseña -->
+      <p *ngIf="password.invalid && password.touched" class="text-red-500 mt-2">
+        <span *ngIf="password.errors?.['required']">La contraseña es requerida.</span>
+      </p>
     </div>
   </div>
-
-  <p *ngIf="errorMessage" class="text-red-500 text-center mb-4">{{ errorMessage }}</p>
-
   <button
     aplzButton
     aplzAppearance="stroked"
