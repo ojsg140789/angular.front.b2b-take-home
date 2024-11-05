@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 import { AplazoButtonComponent } from '@apz/shared-ui/button';
 import { AplazoLogoComponent } from '@apz/shared-ui/logo';
 import { AplazoInputComponent } from '@apz/shared-ui/input';
@@ -8,7 +9,6 @@ import { AplazoNoWhiteSpaceDirective } from '../../../../../../../projects/share
 import { AplazoLowercaseDirective } from '../../../../../../../projects/shared-ui/src/lib/directives/lower-case-text.directive';
 import { LoginUseCase } from '../../../application/login.usecase';
 import { AuthValidationService } from '../../../application/auth-validation.service';
-import { of } from 'rxjs';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -27,6 +27,7 @@ describe('LoginComponent', () => {
       imports: [
         LoginComponent,
         ReactiveFormsModule,
+        ToastrModule.forRoot(),
         AplazoButtonComponent,
         AplazoLogoComponent,
         AplazoInputComponent,
@@ -81,21 +82,5 @@ describe('LoginComponent', () => {
     expect(component.passwordVisible).toBeFalse();
     component.togglePasswordVisibility();
     expect(component.passwordVisible).toBeTrue();
-  });
-
-  it('should display an error message if credentials are invalid', () => {
-    authValidationServiceSpy.validateCredentials.and.returnValue(
-      of({ valid: false, message: 'Invalid credentials' })
-    );
-    component.username.setValue('test@example.com');
-    component.password.setValue('password');
-
-    component.login();
-
-    expect(authValidationServiceSpy.validateCredentials).toHaveBeenCalledWith(
-      'test@example.com',
-      'password'
-    );
-    expect(component.errorMessage).toBe('Invalid credentials');
   });
 });

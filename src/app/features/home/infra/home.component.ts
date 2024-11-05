@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     this.fetchBranches();
   }
 
-  private loadOrderSummary(branchId?: number): void {
+  loadOrderSummary(branchId?: number): void {
     this.orderService.getOrderSummary(branchId).subscribe({
       next: (data) => {
         this.summaryData = data;
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  private fetchBranches(): void {
+  fetchBranches(): void {
     this.orderService.getDistinctBranches().subscribe({
       next: (data) => {
         this.branches = data;

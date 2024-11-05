@@ -4,7 +4,7 @@ import { Observable, tap, take } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ROUTE_CONFIG } from '../../../core/infra/config/routes.config';
 import { Credentials } from '../domain/entities/credentials';
-import { AuthService } from '../../../core/services/auth.service'; // Importa AuthService
+import { AuthService } from '../../../core/services/auth.service';
 
 @Injectable({
   providedIn: 'root',

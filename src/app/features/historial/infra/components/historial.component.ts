@@ -27,7 +27,7 @@ export class HistorialComponent implements OnInit {
     this.fetchOperations();
   }
 
-  private fetchOperations(): void {
+  fetchOperations(): void {
     this.orderService.getOrderOperations().subscribe({
       next: (data) => {
         this.operations = data;
