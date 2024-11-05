@@ -1,3 +1,26 @@
 <div class="w-3/4 mx-auto justify-center py-10">
-  <aplz-table [data]="operations"></aplz-table>
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-semibold">Operaciones: {{ operationCount }}</h2>
+    <div class="flex space-x-4">
+      <div>
+        <label for="start-date" class="block text-gray-700">Fecha de Inicio:</label>
+        <input
+          type="date"
+          id="start-date"
+          [(ngModel)]="startDate"
+          (change)="filterByDate()"
+          class="border border-gray-300 rounded px-3 py-1"/>
+      </div>
+      <div>
+        <label for="end-date" class="block text-gray-700">Fecha de Fin:</label>
+        <input
+          type="date"
+          id="end-date"
+          [(ngModel)]="endDate"
+          (change)="filterByDate()"
+          class="border border-gray-300 rounded px-3 py-1"/>
+      </div>
+    </div>
+  </div>
+  <aplz-table [data]="filteredOperations"></aplz-table>
 </div>
