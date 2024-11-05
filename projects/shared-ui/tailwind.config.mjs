@@ -10,6 +10,7 @@ export default {
     "./projects/shared-ui/dashboard/src/**/*.{html,ts}",
     "./projects/shared-ui/sidenav/src/**/*.{html,ts}",
     "./projects/shared-ui/input/src/**/*.{html,ts}",
-    "./projects/shared-ui/summary/src/**/*.{html,ts}"
+    "./projects/shared-ui/summary/src/**/*.{html,ts}",
+    "./projects/shared-ui/table/src/**/*.{html,ts}"
   ],
 };

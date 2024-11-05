@@ -22,7 +22,8 @@
       "@apz/shared-ui/sidenav": ["./dist/shared-ui/logo"],
       "@apz/shared-ui/dashboard": ["./dist/shared-ui/dashboard"],
       "@apz/shared-ui/input": ["./dist/shared-ui/input"],
-      "@apz/shared-ui/summary": ["./dist/shared-ui/summary"]
+      "@apz/shared-ui/summary": ["./dist/shared-ui/summary"],
+      "@apz/shared-ui/table": ["./dist/shared-ui/table"]
     },
     "importHelpers": true,
     "target": "ES2022",

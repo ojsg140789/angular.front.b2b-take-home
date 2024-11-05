@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { AplazoSummaryComponent } from '../../../../../projects/shared-ui/summary/src/aplazo-summary.component';
 import { OrderService } from '../../../core/services/order.service';
-import { OrderSummary } from '../../login/domain/entities/order-summary';
+import { OrderSummary } from '../../../core/domain/entities/order-summary';
 
 @Component({
   selector: 'app-home',

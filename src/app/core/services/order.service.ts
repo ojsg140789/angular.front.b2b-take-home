@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { OrderSummary } from '../../features/login/domain/entities/order-summary';
+import { OrderSummary } from '../domain/entities/order-summary';
+import { OrderOperation } from '../domain/entities/order-operation';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,9 @@ export class OrderService {
 
   getDistinctBranches(): Observable<number[]> {
     return this.http.get<number[]>(`${this.apiUrl}/distinct-branches`);
+  }
+
+  getOrderOperations(): Observable<OrderOperation[]> {
+    return this.http.get<OrderOperation[]>(`${this.apiUrl}/operations`);
   }
 }
