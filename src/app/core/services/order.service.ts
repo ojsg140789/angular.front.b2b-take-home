@@ -3,12 +3,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { OrderSummary } from '../domain/entities/order-summary';
 import { OrderOperation } from '../domain/entities/order-operation';
+import { API_BASE_URL } from '../config/api-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'https://localhost:7021/api/Order';
+  private apiUrl = `${API_BASE_URL}/Order`;
 
   constructor(private http: HttpClient) {}
 
