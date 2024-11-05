@@ -6,6 +6,7 @@ import { LayoutComponent } from './features/layout/layout.component';
 import { LoginComponent } from './features/login/infra/components/login/login.component';
 import { provideLogin } from './features/login/infra/config/providers';
 import { AuthGuard } from './core/guards/auth.guard';
+import { UnauthenticatedGuard } from './core/guards/unauthenticated.guard';
 
 export const routes: Routes = [
   {
@@ -17,10 +18,12 @@ export const routes: Routes = [
     path: ROUTE_CONFIG.login,
     component: LoginComponent,
     providers: [provideLogin()],
+    canActivate: [UnauthenticatedGuard]
   },
   {
     path: ROUTE_CONFIG.app,
     component: LayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -29,13 +32,11 @@ export const routes: Routes = [
       },
       {
         path: ROUTE_CONFIG.home,
-        component: HomeComponent,
-        canActivate: [AuthGuard]
+        component: HomeComponent
       },
       {
         path: ROUTE_CONFIG.historial,
-        component: HistorialComponent,
-        canActivate: [AuthGuard]
+        component: HistorialComponent
       },
     ],
   },

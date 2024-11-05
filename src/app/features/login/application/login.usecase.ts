@@ -19,11 +19,9 @@ export class LoginUseCase {
     }
   
     return this.authService.login(credentials).pipe(
-      map((response) => response.token), // Extrae solo el token
+      map((response) => response.token),
       tap((token) => {
-        // Guarda el token en localStorage
         localStorage.setItem('authToken', token);
-        // Navega a la página de inicio después de autenticarse
         this.router.navigate([ROUTE_CONFIG.app, ROUTE_CONFIG.home]);
       }),
       take(1)

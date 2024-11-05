@@ -36,6 +36,7 @@ export class LayoutComponent {
   logout(): void {
     this.authService.logout().subscribe({
       next: () => {
+        localStorage.removeItem('authToken');
         this.#router.navigate(['/auth']);
       },
       error: (error) => {
