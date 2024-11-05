@@ -12,30 +12,30 @@ export const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: ROUTE_CONFIG.login,
+    redirectTo: ROUTE_CONFIG.login.path,
   },
   {
-    path: ROUTE_CONFIG.login,
+    path: ROUTE_CONFIG.login.path,
     component: LoginComponent,
     providers: [provideLogin()],
     canActivate: [UnauthenticatedGuard]
   },
   {
-    path: ROUTE_CONFIG.app,
+    path: ROUTE_CONFIG.app.path,
     component: LayoutComponent,
     canActivate: [AuthGuard],
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: ROUTE_CONFIG.home,
+        redirectTo: ROUTE_CONFIG.home.path,
       },
       {
-        path: ROUTE_CONFIG.home,
+        path: ROUTE_CONFIG.home.path,
         component: HomeComponent
       },
       {
-        path: ROUTE_CONFIG.historial,
+        path: ROUTE_CONFIG.historial.path,
         component: HistorialComponent
       },
     ],
@@ -43,6 +43,6 @@ export const routes: Routes = [
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: ROUTE_CONFIG.login,
+    redirectTo: ROUTE_CONFIG.login.path,
   },
 ];

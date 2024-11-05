@@ -30,7 +30,7 @@ export class LayoutComponent {
   public pageTitle$ = inject(RouteTitleService).title$;
 
   clickLogo(): void {
-    this.#router.navigate([`/${ROUTE_CONFIG.app}/${ROUTE_CONFIG.home}`]);
+    this.#router.navigate([`/${ROUTE_CONFIG.app.path}/${ROUTE_CONFIG.home.path}`]);
   }
 
   logout(): void {

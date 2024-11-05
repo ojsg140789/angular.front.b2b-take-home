@@ -28,6 +28,9 @@ let nextUniqueId = 0;
     },
   ],
   template: `
+    <span *ngIf="icon" class="aplazo-sidenav-link__icon">
+      <i [class]="icon"></i>
+    </span>
     <span class="aplazo-sidenav-link__label aplazo-sidenav-link__label-pretty">
       <ng-content></ng-content>
     </span>
@@ -57,6 +60,9 @@ export class AplazoSidenavLinkComponent implements OnInit, OnDestroy {
     return this.#id;
   }
   #id: string = this.#uid;
+  
+  @Input() icon: string = '';
+  
 
   /** Internal reference to handle the classes of the host
    * @ignore

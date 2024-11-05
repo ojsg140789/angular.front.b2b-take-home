@@ -22,7 +22,7 @@ export class LoginUseCase {
       map((response) => response.token),
       tap((token) => {
         localStorage.setItem('authToken', token);
-        this.router.navigate([ROUTE_CONFIG.app, ROUTE_CONFIG.home]);
+        this.router.navigate([ROUTE_CONFIG.app.path, ROUTE_CONFIG.home.path]);
       }),
       take(1)
     );

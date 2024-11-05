@@ -8,8 +8,8 @@ import { ROUTE_CONFIG } from '../infra/config/routes.config';
 })
 export class RouteTitleService {
   private readonly routeTitles: Record<string, string> = {
-    [`/${ROUTE_CONFIG.home}`]: 'Inicio',
-    [`/${ROUTE_CONFIG.historial}`]: 'Historial'
+    [`/${ROUTE_CONFIG.home.path}`]: 'Inicio',
+    [`/${ROUTE_CONFIG.historial.path}`]: 'Historial'
   };
 
   private titleSubject = new BehaviorSubject<string>('Layout Principal');
